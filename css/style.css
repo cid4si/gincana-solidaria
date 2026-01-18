@@ -1,2 +1,43 @@
 body {}
 header { background-color: #21f36e; color: white; padding: 1rem; display: flex; justify-content: space-between; align-items: center; }
+.menu-fixo {}
+.nav-link {}
+.btn-doar-agora {}
+
+.hero-banner {}
+.container-responsivo {}
+.footer-impacto {}
+
+.card-estatistica {}
+.card-bairro {}
+.barra-progresso-patente {}
+
+.leaderboard-container {}
+.ranking-item {}
+.ranking-posicao-destaque {}
+.grafico-impacto {}
+
+.grid-medalhas {}
+.medalha-item {}
+.badge-animado {}
+.medalha-bloqueada {}
+
+.patente-novato {}
+.patente-guardiao {}
+.patente-heroi {}
+.patente-mestre {}
+.patente-ranger {}
+
+.form-stepwise {}
+.input-field {}
+.select-bairro {}
+.btn-scan-qr {}
+
+.lista-missoes {}
+.missao-tag-facil {}
+.missao-tag-medio {}
+.missao-tag-dificil {}
+.missao-colaborativa {}
+
+.admin-dashboard {}
+.relatorio-pdf-btn {}
