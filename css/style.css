@@ -1,43 +1,341 @@
-body {}
-header { background-color: #21f36e; color: white; padding: 1rem; display: flex; justify-content: space-between; align-items: center; }
-.menu-fixo {}
-.nav-link {}
-.btn-doar-agora {}
 
-.hero-banner {}
-.container-responsivo {}
-.footer-impacto {}
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@100&family=Rajdhani:wght@500;700&display=swap');
 
-.card-estatistica {}
-.card-bairro {}
-.barra-progresso-patente {}
+:root {
+    --bg-deep: #001449;
+    --bg-navy: #012677;
+    --neon-blue: #00B4FC;
+    --neon-aqua: #12e2c6;
+    --gold: #C79545;
+    --white: #FCFCFC;
+}
 
-.leaderboard-container {}
-.ranking-item {}
-.ranking-posicao-destaque {}
-.grafico-impacto {}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-.grid-medalhas {}
-.medalha-item {}
-.badge-animado {}
-.medalha-bloqueada {}
+.hidden {
+    display: none !important;
+}
 
-.patente-novato {}
-.patente-guardiao {}
-.patente-heroi {}
-.patente-mestre {}
-.patente-ranger {}
+body {
+    font-family: 'Graph FF Condensed', 'Bebas Neue', sans-serif;
+    background-color: var(--bg-deep);
+    color: var(--white);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-size: 25px;
+}
 
-.form-stepwise {}
-.input-field {}
-.select-bairro {}
-.btn-scan-qr {}
+h1, h2, .logo {
+    font-family: 'Graph FF Condensed', 'Bebas Neue', sans-serif;
+    font-weight: 100; 
+    letter-spacing: 0.05em; 
+    line-height: 1.1;
+    text-transform: uppercase; 
+}
 
-.lista-missoes {}
-.missao-tag-facil {}
-.missao-tag-medio {}
-.missao-tag-dificil {}
-.missao-colaborativa {}
+h3, p, .stat-number, .btn, .rank-badge, #donationResult {
+    font-family: 'Graph FF Condensed', 'Bebas Neue', sans-serif;
+    text-transform: uppercase;
+}
 
-.admin-dashboard {}
-.relatorio-pdf-btn {}
+header {
+    background: rgba(0, 10, 40, 0.98);
+    padding: 15px 0;
+    border-bottom: 2px solid var(--gold);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    position: relative;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--white);
+    font-weight: 500;
+    font-size: 22px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--neon-aqua);
+}
+
+.container {
+    flex: 1;
+    max-width: 1100px;
+    margin: 40px auto;
+    width: 100%;
+}
+
+.section {
+    background: var(--bg-navy) !important;
+    padding: 30px;
+    border-left: 5px solid var(--gold);
+    margin-bottom: 30px;
+}
+
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(45deg, var(--bg-deep), var(--bg-navy));
+    border: 1px solid var(--neon-blue);
+    margin-bottom: 30px;
+}
+
+.hero h1 {
+    font-size: 60px;
+    color: var(--neon-aqua);
+    font-weight: 100;
+}
+
+.btn {
+    background: transparent;
+    color: var(--gold);
+    border: 2px solid var(--gold);
+    padding: 10px 35px;
+    font-family: 'Graph FF Condensed', sans-serif;
+    font-size: 24px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+.btn:hover {
+    background: var(--gold);
+    color: var(--bg-deep);
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    text-align: center;
+    border: 1px solid var(--neon-blue);
+    border-radius: 8px;
+}
+
+.stat-number {
+    font-family: 'Graph FF Condensed', 'Bebas Neue', sans-serif;
+    font-size: 40px;
+    color: var(--gold);
+}
+
+.form-group {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-family: 'Teko', sans-serif;
+    font-size: 20px;
+    color: var(--neon-aqua);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.form-group input, 
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    background: rgba(252, 252, 252, 0.1);
+    border: 1px solid var(--neon-blue);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-weight: 100;
+    font-size: 16px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: rgba(252, 252, 252, 0.15);
+}
+
+#donationResult {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 4px;
+    font-family: 'Teko', sans-serif;
+    font-size: 22px;
+}
+
+.profile-header {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+    align-items: center;
+}
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    background-image: url('../img/visitante_1.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    border: 4px solid var(--gold);
+}
+
+.profile-info h2 {
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.rank-badge {
+    background: var(--gold);
+    color: var(--bg-deep);
+    padding: 1px 5px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tab {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid var(--neon-blue);
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.tab.active {
+    background: var(--neon-aqua);
+    color: var(--bg-deep);
+    border-color: var(--gold);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.ranking-table {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--neon-blue);
+}
+
+.ranking-table th,
+.ranking-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ranking-table th {
+    background: var(--gold);
+    color: var(--bg-deep);
+    font-weight: 700;
+}
+
+.medal-position {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    width: 60px;
+}
+
+.badges-grid,
+.missions-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.badge,
+.mission-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--neon-blue);
+    text-align: center;
+}
+
+.badge-icon {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.badge.unlocked {
+    border-color: var(--gold);
+    box-shadow: 0 0 20px rgba(199, 149, 69, 0.3);
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        position: static;
+        flex-direction: column;
+        gap: 10px;
+        transform: none;
+    }
+    
+    .hero h1 {
+        font-size: 40px;
+    }
+    
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+footer {
+    background: #00081a;
+    padding: 30px;
+    text-align: center;
+    border-top: 2px solid var(--gold);
+    margin-top: auto;
+    font-family: 'Graph FF Condensed', sans-serif;
+}
+
+.ranking-table td, 
+.mission-card p {
+    font-size: 18px;
+    font-weight: 500;
+}

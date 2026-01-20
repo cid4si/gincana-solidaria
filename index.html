@@ -1,55 +1,179 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gincana Solidária Curitiba</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@600&family=Rajdhani:wght@500;700&display=swap" relstylesheet>
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
     <header>
-        <h1>Gincana Solidária CWB</h1>
-        <div id="user-badge" class="patente-destaque">Ranger Solidário</div>
+        <nav>
+            <div class="logo">🌟<strong>Gincana Solidária</strong>
+              </div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showPage('home')">Início</a></li>
+                <li><a href="#" onclick="showPage('profile')">Meu Perfil</a></li>
+                <li><a href="#" onclick="showPage('rankings')">Rankings</a></li>
+                <li><a href="#" onclick="showPage('medalhas')">Medalhas</a></li>
+                <li><a href="#" onclick="showPage('missions')">Missões</a></li>
+                <li><a href="#" onclick="showPage('donate')">Doar Agora</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main>
-        <section class="hero">
-            <h2>Ciclo: Janeiro - Março</h2>
-            <p>Transformando doações em impacto social em Curitiba[dados: 1].</p>
-        </section>
-
-        <section class="stats">
-            <div class="card">
-                <h3>10+ Toneladas</h3>
-                <p>Doadas neste ciclo[dados: 21].</p>
+    <div class="container">
+        <!-- HOME -->
+        <div id="home" class="page">
+            <div class="hero">
+                <h1><bold>Transforme Doações em Impacto Social</bold></h1><br>
+                <p>Participe da gincana solidária de Curitiba</p>
+                <button class="btn" onclick="showPage('donate')">Começar a Doar</button>
             </div>
-            <div class="card">
-                <h3>23 Boqueirão</h3>
-                <p>Sua posição no ranking local[dados: 71].</p>
-            </div>
-        </section>
+        </div>
 
-        <section class="tabela-pontos">
-            <h3>Tabela de Pontuação [dados: 25]</h3>
-            <ul id="lista-pontos">
-                <li>Alimentos: 10 pts/kg [dados: 26]</li>
-                <li>Roupas: 15 pts/peça [dados: 27]</li>
-                <li>Materiais Escolares: 20 pts/unid [dados: 28]</li>
-                <li>Móveis: 50 pts/item [dados: 29]</li>
-            </ul>
-        </section>
-
-        <section class="medalhas">
-            <h3>Minhas Medalhas [dados: 73]</h3>
-            <div class="grid-medalhas">
-                <div class="medalha" Herói do Pão [dados: 43]</div>
-                    <div class="medalha">Guardião das Crianças [dados: 43]</div>
+        <!-- DONATE -->
+        <div id="donate" class="page hidden">
+            <div class="section">
+                <h2>Registrar Nova Doação</h2><br>
+                <div id="registrationWarning" style="margin-bottom: 20px; color: var(--gold);">
+                    Certifique-se de salvar seu perfil na aba "Meu Perfil" para acumular pontos!
                 </div>
-        </section>
-    </main>
+                
+                <div class="form-group">
+                    <label>O que você está doando?</label>
+                    <select id="donationType">
+                        <option value="food">Alimentos (10 pts/kg)</option>
+                        <option value="clothes">Roupas (15 pts/peça)</option>
+                        <option value="school">Material Escolar (20 pts/unid)</option>
+                        <option value="furniture">Móveis (50 pts/item)</option>
+                        <option value="volunteer">Voluntariado (30 pts/hora)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Quantidade</label>
+                    <input type="number" id="donationAmount" min="1" value="1">
+                </div>
+                
+                <div class="form-group">
+                    <label>Ponto de Entrega</label>
+                    <select id="collectionPoint">
+                        <option>Provopar - Boqueirão</option>
+                        <option>CUFA - Centro</option>
+                        <option>Shopping Crystal</option>
+                    </select>
+                </div>
+                
+                <button class="btn" onclick="registerDonation()">Confirmar e Ganhar Pontos</button>
+                <div id="donationResult"></div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalDonations">1,247</div>
+                    <div class="stat-label">Doações Realizadas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="totalKg">3,458</div>
+                    <div class="stat-label">Kg Doados</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="totalFamilies">892</div>
+                    <div class="stat-label">Famílias Beneficiadas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="totalParticipants">456</div>
+                    <div class="stat-label">Participantes Ativos</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROFILE -->
+        <div id="profile" class="page hidden">
+            <div class="section">
+                <div class="profile-header">
+                    <div class="profile-avatar"></div>
+                    <div class="profile-info">
+                        <h2 id="userName">Visitante</h2>
+                        <span class="rank-badge" id="userRank">Doador Novato</span><br>
+                        <p>Bairro: <span id="userNeighborhood">Centro Cívico</span></p>
+                        <p>Pontos: <span id="userPoints">0</span> pts</p>
+
+                        <!-- BARRA DE PROGRESSO -->
+                        <div style="margin-top: 20px;">
+                            <div style="font-size: 14px; margin-bottom: 5px;">Progresso para próximo rank:</div>
+                            <div style="background: rgba(255,255,255,0.1); height: 20px; border-radius: 10px; overflow: hidden;">
+                                <div id="progressBar" style="height: 100%; background: var(--gold); width: 0%; transition: width 0.5s; display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--bg-deep); font-weight: bold;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Nome</label>
+                    <input type="text" id="profileName" value="Visitante">
+                </div>
+                <div class="form-group">
+                    <label>Bairro</label>
+                    <input type="text" id="profileNeighborhood" value="Centro Cívico">
+                </div>
+                <button class="btn" onclick="saveProfile()">Salvar Perfil</button>
+            </div>
+        </div>
+
+        <!-- RANKINGS -->
+        <div id="rankings" class="page hidden">
+            <div class="section">
+                <h2>Rankings</h2><br>
+                <div class="tabs">
+                    <button class="tab active" onclick="showTab(event, 'weekly')">Semanal</button>
+                    <button class="tab" onclick="showTab(event, 'monthly')">Mensal</button>
+                    <button class="tab" onclick="showTab(event, 'overall')">Geral</button>
+                </div>
+                
+                <div id="weekly" class="tab-content active">
+                    <table class="ranking-table">
+                        <tbody id="weeklyRanking"></tbody>
+                    </table>
+                </div>
+                <div id="monthly" class="tab-content">
+                    <table class="ranking-table">
+                        <tbody id="monthlyRanking"></tbody>
+                    </table>
+                </div>
+                <div id="overall" class="tab-content">
+                    <table class="ranking-table">
+                        <tbody id="overallRanking"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- MEDALHAS -->
+        <div id="medalhas" class="page hidden">
+            <div class="section">
+                <h2>Minhas Medalhas</h2><br>
+                <div class="badges-grid" id="badgesGrid"></div>
+            </div>
+        </div>
+
+        <!-- MISSÕES -->
+        <div id="missions" class="page hidden">
+            <div class="section">
+                <h2>Missões Disponíveis</h2><br>
+                <div class="missions-list" id="missionsList"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Gincana Solidária de Curitiba</p>
+    </footer>
 
     <script src="js/app.js"></script>
 </body>
-
 </html>
